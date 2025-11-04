@@ -2,30 +2,28 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-do
 import Home from './pages/Home'
 import Cards from './pages/Cards'
 import List from './pages/List'
+import FeedyLogo from './assets/FeedyLogo'
 
 function Navigation() {
   const location = useLocation()
-  
+
   const isActive = (path) => location.pathname === path
-  
+
   return (
-    <nav className="bg-black text-white px-8 py-4">
-      <div className="flex gap-8">
-        <Link 
-          to="/" 
-          className={`hover:text-gray-300 ${isActive('/') ? 'font-bold' : ''}`}
-        >
-          Home
+    <nav className="bg-white text-gray-700 px-8 py-4 border-b border-gray-200">
+      <div className="flex gap-8 items-center">
+        <Link to="/" className="hover:opacity-80 transition">
+          <FeedyLogo className="h-8" />
         </Link>
-        <Link 
-          to="/cards" 
-          className={`hover:text-gray-300 ${isActive('/cards') ? 'font-bold' : ''}`}
+        <Link
+          to="/cards"
+          className={`hover:text-gray-900 ${isActive('/cards') ? 'font-bold text-gray-900' : ''}`}
         >
           Cards
         </Link>
-        <Link 
-          to="/list" 
-          className={`hover:text-gray-300 ${isActive('/list') ? 'font-bold' : ''}`}
+        <Link
+          to="/list"
+          className={`hover:text-gray-900 ${isActive('/list') ? 'font-bold text-gray-900' : ''}`}
         >
           List
         </Link>

@@ -7,16 +7,20 @@ function Cards() {
     emotion: [],
     autoTag: []
   })
-  
+  const [dateRange, setDateRange] = useState({
+    start: '',
+    end: ''
+  })
+
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('feedbacks') || '[]')
     setFeedbacks(stored.reverse()) // 최신순
   }, [])
-  
-  const categories = ['강사', '학생', '기업', '입직원']
+
+  const categories = ['강사', '학생', '기업', '임직원']
   const emotions = ['긍정', '부정']
   const autoTags = ['강사', '강사', '린트드']
-  
+
   const toggleFilter = (type, value) => {
     setActiveFilters(prev => {
       const current = prev[type]
@@ -27,20 +31,24 @@ function Cards() {
       }
     })
   }
-  
+
   const filteredFeedbacks = feedbacks.filter(fb => {
     if (activeFilters.category.length > 0 && !activeFilters.category.includes(fb.category)) {
       return false
     }
+
+    // 날짜 필터링
+    if (dateRange.start || dateRange.end) {
+      const fbDate = new Date(fb.date).toISOString().split('T')[0]
+      if (dateRange.start && fbDate < dateRange.start) return false
+      if (dateRange.end && fbDate > dateRange.end) return false
+    }
+
     return true
   })
-  
+
   return (
     <div className="max-w-7xl mx-auto p-8">
-      <h1 className="text-5xl font-bold mb-8" style={{ fontFamily: 'cursive' }}>
-        Feedy
-      </h1>
-      
       <div className="flex gap-8">
         {/* 왼쪽: 필터 */}
         <div className="w-64 flex-shrink-0">
@@ -84,6 +92,34 @@ function Cards() {
           
           <div className="mb-8">
             <h3 className="font-bold mb-3">날짜</h3>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs text-gray-600 mb-1">시작일</label>
+                <input
+                  type="date"
+                  value={dateRange.start}
+                  onChange={(e) => setDateRange(prev => ({ ...prev, start: e.target.value }))}
+                  className="w-full p-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-600 mb-1">종료일</label>
+                <input
+                  type="date"
+                  value={dateRange.end}
+                  onChange={(e) => setDateRange(prev => ({ ...prev, end: e.target.value }))}
+                  className="w-full p-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+              </div>
+              {(dateRange.start || dateRange.end) && (
+                <button
+                  onClick={() => setDateRange({ start: '', end: '' })}
+                  className="w-full px-3 py-1 bg-gray-100 text-gray-600 rounded text-xs hover:bg-gray-200 transition"
+                >
+                  초기화
+                </button>
+              )}
+            </div>
           </div>
           
           <div className="mb-8">

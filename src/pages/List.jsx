@@ -4,15 +4,15 @@ import { getMainInsight, getFeatureRecommendations } from '../utils/aiAnalyzer'
 function List() {
   const [insight, setInsight] = useState('')
   const [recommendations, setRecommendations] = useState([])
-  
+
   useEffect(() => {
     const feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]')
-    
+
     if (feedbacks.length > 0) {
       // 전체 피드백 기반으로 메인 인사이트 생성
       const mainInsight = getMainInsight(feedbacks)
       setInsight(mainInsight)
-      
+
       // 기능 추천 생성
       const recs = getFeatureRecommendations(feedbacks)
       setRecommendations(recs)
@@ -36,13 +36,9 @@ function List() {
       ])
     }
   }, [])
-  
+
   return (
     <div className="max-w-5xl mx-auto p-8">
-      <h1 className="text-5xl font-bold mb-12" style={{ fontFamily: 'cursive' }}>
-        Feedy
-      </h1>
-      
       {/* 메인 인사이트 카드 */}
       <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-2xl p-8 mb-12 shadow-lg">
         <div className="text-sm mb-2 opacity-90">핵심 인사이트</div>
