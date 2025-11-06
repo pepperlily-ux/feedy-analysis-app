@@ -37,7 +37,7 @@ function Insight() {
       mainIssue: {
         title: '가장 시급한 문제',
         category: topCategory[0],
-        description: `${topCategory[0]} 카테고리에서 ${topCategory[1]}건의 피드백이 집중되어 있습니다. 이 영역의 개선이 가장 시급합니다.`,
+        description: `가장 시급한 문제는 UI 복잡도이며, 인터랙티브 온보딩 튜토리얼과 UI 간소화 작업을 추천합니다.`,
         priority: 'high',
         icon: '🚨'
       },
@@ -128,21 +128,6 @@ function Insight() {
         </div>
       ) : (
         <>
-          {/* 전체 통계 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-            <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
-              <div className="text-sm text-gray-500 mb-2">전체 피드백</div>
-              <div className="text-3xl font-bold text-gray-800">{stats.total}</div>
-            </div>
-
-            {categories.map(cat => (
-              <div key={cat} className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
-                <div className="text-sm text-gray-500 mb-2">{cat}</div>
-                <div className="text-3xl font-bold text-gray-800">{stats.byCategory[cat] || 0}</div>
-              </div>
-            ))}
-          </div>
-
           {insights && (
             <>
               {/* 메인 이슈 카드 */}
