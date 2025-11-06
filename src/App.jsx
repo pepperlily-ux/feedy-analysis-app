@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-do
 import Home from './pages/Home'
 import Cards from './pages/Cards'
 import List from './pages/List'
+import Insight from './pages/Insight'
 import FeedyLogo from './assets/FeedyLogo'
 
 function Navigation() {
@@ -27,6 +28,12 @@ function Navigation() {
         >
           List
         </Link>
+        <Link
+          to="/insight"
+          className={`hover:text-gray-900 ${isActive('/insight') ? 'font-bold text-gray-900' : ''}`}
+        >
+          Insight
+        </Link>
       </div>
     </nav>
   )
@@ -41,6 +48,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cards" element={<Cards />} />
           <Route path="/list" element={<List />} />
+          <Route path="/insight" element={<Insight />} />
         </Routes>
       </div>
     </BrowserRouter>
