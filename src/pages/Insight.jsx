@@ -37,7 +37,7 @@ function Insight() {
       mainIssue: {
         title: '가장 시급한 문제',
         category: topCategory[0],
-        description: `가장 시급한 문제는 실습 중 질문 접근성 부족이며, 실시간 Q&A 플랫폼과 AI 챗봇 도우미 개발을 추천합니다.`,
+        description: `가장 시급한 문제는 실습 중 질문 접근성 부족이며, 실시간 Q&A 플랫폼 개발을 추천합니다.`,
         priority: 'high',
         icon: '🚨'
       },
