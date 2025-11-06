@@ -37,76 +37,86 @@ function Insight() {
       mainIssue: {
         title: '가장 시급한 문제',
         category: topCategory[0],
-        description: `가장 시급한 문제는 UI 복잡도이며, 인터랙티브 온보딩 튜토리얼과 UI 간소화 작업을 추천합니다.`,
+        description: `가장 시급한 문제는 실습 중 질문 접근성 부족이며, 실시간 Q&A 플랫폼과 AI 챗봇 도우미 개발을 추천합니다.`,
         priority: 'high',
         icon: '🚨'
       },
       problems: [
         {
           id: 1,
-          title: 'UI 복잡도 문제',
-          description: '사용자들이 인터페이스가 복잡하다고 느끼고 있습니다. 핵심 기능을 찾기 어렵다는 의견이 다수입니다.',
+          title: '실습 중 질문 접근성 부족',
+          description: '학생들이 실습 중 막힐 때 강사에게 질문하기 어렵고, 질문 기회가 제한적입니다. 수업 분위기상 질문하기 부담스러워하는 학생이 많습니다.',
           severity: 'high',
-          affectedUsers: '62%',
-          icon: '⚠️'
+          affectedUsers: '68%',
+          icon: '🙋'
         },
         {
           id: 2,
-          title: '온보딩 경험 부족',
-          description: '처음 사용하는 사용자들이 서비스 사용법을 이해하는데 어려움을 겪고 있습니다.',
-          severity: 'medium',
-          affectedUsers: '45%',
-          icon: '📚'
+          title: '실습 진도 차이로 인한 학습 격차',
+          description: '같은 반 내에서도 학생들의 실습 진도가 크게 차이나며, 빠른 학생은 기다려야 하고 느린 학생은 따라가기 힘들어합니다.',
+          severity: 'high',
+          affectedUsers: '73%',
+          icon: '📊'
         },
         {
           id: 3,
-          title: '응답 속도 개선 필요',
-          description: '일부 기능에서 로딩 시간이 길다는 피드백이 있습니다.',
+          title: '실습 자료 접근성 문제',
+          description: '실습 자료가 여러 곳에 흩어져 있어 찾기 어렵고, 복습할 때 필요한 자료를 못 찾는 경우가 많습니다.',
           severity: 'medium',
-          affectedUsers: '28%',
-          icon: '⏱️'
+          affectedUsers: '52%',
+          icon: '📚'
         }
       ],
       solutions: [
         {
           id: 1,
-          title: '인터랙티브 온보딩 튜토리얼',
-          description: '첫 사용자에게 단계별 가이드를 제공하여 5분 안에 핵심 기능을 경험할 수 있게 합니다.',
+          title: '실시간 Q&A 플랫폼',
+          description: '실습 중 익명으로 질문을 올리고, 강사나 다른 학생들이 답변할 수 있는 실시간 질문 게시판을 제공합니다. 질문 부담을 낮추고 즉각적인 도움을 받을 수 있습니다.',
           impact: 'high',
           effort: 'medium',
-          expectedResult: '신규 사용자 이탈률 40% 감소 예상',
-          icon: '🎯',
-          tags: ['UX', '온보딩', '사용성']
+          expectedResult: '학생 질문률 85% 증가, 막힘 해소 시간 60% 단축',
+          icon: '💬',
+          tags: ['질문', '소통', '실시간']
         },
         {
           id: 2,
-          title: 'UI 간소화 및 재설계',
-          description: '핵심 기능을 우선순위에 따라 배치하고, 고급 기능은 접을 수 있는 메뉴로 정리합니다.',
+          title: 'AI 학습 도우미 챗봇',
+          description: '실습 중 간단한 질문에 AI가 즉시 답변하고, 에러 메시지 해석 및 해결 방법을 제시합니다. 24/7 학습 지원이 가능합니다.',
           impact: 'high',
           effort: 'high',
-          expectedResult: '작업 완료 시간 30% 단축',
-          icon: '✨',
-          tags: ['UI/UX', '디자인', '효율성']
+          expectedResult: '즉각 응답률 90%, 반복 질문 50% 감소',
+          icon: '🤖',
+          tags: ['AI', '자동화', '학습지원']
         },
         {
           id: 3,
-          title: '성능 최적화',
-          description: '이미지 레이지 로딩과 캐싱 전략을 도입하여 로딩 속도를 개선합니다.',
-          impact: 'medium',
-          effort: 'low',
-          expectedResult: '페이지 로딩 속도 50% 개선',
-          icon: '⚡',
-          tags: ['성능', '최적화', '기술']
+          title: '개인별 맞춤 진도 시스템',
+          description: '각 학생의 진도를 추적하고, 수준에 맞는 추가 문제나 심화 과제를 자동으로 제공합니다. 빠른 학생에게는 챌린지를, 느린 학생에게는 보충 자료를 제공합니다.',
+          impact: 'high',
+          effort: 'medium',
+          expectedResult: '학습 만족도 70% 향상, 학습 격차 40% 감소',
+          icon: '🎯',
+          tags: ['개인화', '적응학습', 'AI']
         },
         {
           id: 4,
-          title: '퀵 액션 메뉴',
-          description: '자주 사용하는 기능에 빠르게 접근할 수 있는 단축키와 플로팅 버튼을 제공합니다.',
+          title: '통합 실습 자료 허브',
+          description: '모든 실습 자료를 한 곳에 모아 검색 가능하게 하고, 수업별/주제별로 정리된 자료 라이브러리를 제공합니다. 북마크와 메모 기능으로 개인 학습을 지원합니다.',
           impact: 'medium',
           effort: 'low',
-          expectedResult: '반복 작업 시간 60% 단축',
-          icon: '🚀',
-          tags: ['생산성', 'UX', '편의성']
+          expectedResult: '자료 찾기 시간 80% 단축, 복습 효율 65% 향상',
+          icon: '📦',
+          tags: ['자료관리', 'UX', '검색']
+        },
+        {
+          id: 5,
+          title: '피어 러닝 매칭 시스템',
+          description: '비슷한 진도의 학생들을 자동으로 그룹화하여 함께 학습하고 서로 도울 수 있게 합니다. 강사 부담을 줄이고 협력 학습을 촉진합니다.',
+          impact: 'medium',
+          effort: 'medium',
+          expectedResult: '학습 참여도 55% 증가, 강사 질문 부담 35% 감소',
+          icon: '👥',
+          tags: ['협업', '소셜러닝', '그룹화']
         }
       ]
     }
