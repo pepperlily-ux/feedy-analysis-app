@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Cards from './pages/Cards'
 import List from './pages/List'
 import Insight from './pages/Insight'
+import Hypothesis from './pages/Hypothesis'
 import FeedyLogo from './assets/FeedyLogo'
 
 function Navigation() {
@@ -34,6 +35,12 @@ function Navigation() {
         >
           Insight
         </Link>
+        <Link
+          to="/hypothesis"
+          className={`hover:text-gray-900 ${isActive('/hypothesis') ? 'font-bold text-gray-900' : ''}`}
+        >
+          Hypothesis
+        </Link>
       </div>
     </nav>
   )
@@ -49,6 +56,7 @@ function App() {
           <Route path="/cards" element={<Cards />} />
           <Route path="/list" element={<List />} />
           <Route path="/insight" element={<Insight />} />
+          <Route path="/hypothesis" element={<Hypothesis />} />
         </Routes>
       </div>
     </BrowserRouter>
