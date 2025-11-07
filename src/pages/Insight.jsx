@@ -49,8 +49,7 @@ function Insight() {
       mainIssue: {
         title: '가장 시급한 문제',
         description: `가장 시급한 문제는 실습 중 질문 접근성 부족이며, 실시간 Q&A 플랫폼 개발을 추천합니다.`,
-        priority: 'high',
-        icon: '🚨'
+        priority: 'high'
       },
       problems: [
         {
@@ -59,7 +58,6 @@ function Insight() {
           description: '학생들이 실습 중 막힐 때 강사에게 질문하기 어렵고, 질문 기회가 제한적입니다. 수업 분위기상 질문하기 부담스러워하는 학생이 많습니다.',
           severity: 'high',
           affectedUsers: '68%',
-          icon: '🙋',
           relatedFeedbacks: mockFeedbacks.slice(0, 3), // 근거가 되는 피드백
           solution: {
             title: '실시간 Q&A 플랫폼',
@@ -68,9 +66,7 @@ function Insight() {
             impact: 'high',
             effort: 'medium',
             expectedResult: '학생 질문률 85% 증가, 막힘 해소 시간 60% 단축',
-            icon: '💬',
-            tags: ['질문', '소통', '실시간'],
-            sketchImage: 'https://via.placeholder.com/800x500/667eea/ffffff?text=Q%26A+Platform+Sketch'
+            tags: ['질문', '소통', '실시간']
           }
         },
         {
@@ -79,7 +75,6 @@ function Insight() {
           description: '같은 반 내에서도 학생들의 실습 진도가 크게 차이나며, 빠른 학생은 기다려야 하고 느린 학생은 따라가기 힘들어합니다.',
           severity: 'high',
           affectedUsers: '73%',
-          icon: '📊',
           relatedFeedbacks: mockFeedbacks.slice(3, 5),
           solution: {
             title: '개인별 맞춤 진도 시스템',
@@ -88,9 +83,7 @@ function Insight() {
             impact: 'high',
             effort: 'medium',
             expectedResult: '학습 만족도 70% 향상, 학습 격차 40% 감소',
-            icon: '🎯',
-            tags: ['개인화', '적응학습', 'AI'],
-            sketchImage: 'https://via.placeholder.com/800x500/f093fb/ffffff?text=Adaptive+Learning+System'
+            tags: ['개인화', '적응학습', 'AI']
           }
         },
         {
@@ -99,7 +92,6 @@ function Insight() {
           description: '실습 자료가 여러 곳에 흩어져 있어 찾기 어렵고, 복습할 때 필요한 자료를 못 찾는 경우가 많습니다.',
           severity: 'medium',
           affectedUsers: '52%',
-          icon: '📚',
           relatedFeedbacks: mockFeedbacks.slice(3, 5),
           solution: {
             title: '통합 실습 자료 허브',
@@ -108,9 +100,7 @@ function Insight() {
             impact: 'medium',
             effort: 'low',
             expectedResult: '자료 찾기 시간 80% 단축, 복습 효율 65% 향상',
-            icon: '📦',
-            tags: ['자료관리', 'UX', '검색'],
-            sketchImage: 'https://via.placeholder.com/800x500/4facfe/ffffff?text=Resource+Hub+Design'
+            tags: ['자료관리', 'UX', '검색']
           }
         }
       ]
@@ -128,9 +118,8 @@ function Insight() {
       {insights && (
             <>
               {/* 메인 이슈 카드 */}
-              <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl p-8 mb-12 shadow-lg">
+              <div className="bg-[#198AFC] text-white rounded-2xl p-8 mb-12 shadow-lg">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-4xl">{insights.mainIssue.icon}</span>
                   <div>
                     <div className="text-sm mb-1 opacity-90">{insights.mainIssue.title}</div>
                     <h3 className="text-2xl font-bold">{insights.mainIssue.description}</h3>
@@ -140,8 +129,7 @@ function Insight() {
 
               {/* 문제점 분석 - 탭 형태 */}
               <div className="mb-12">
-                <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                  <span>🔍</span>
+                <h3 className="text-2xl font-bold mb-6">
                   발견된 문제점
                 </h3>
 
@@ -153,16 +141,15 @@ function Insight() {
                       onClick={() => setSelectedProblem(problem.id)}
                       className={`bg-white border-2 rounded-xl p-6 transition shadow-sm text-left ${
                         selectedProblem === problem.id
-                          ? 'border-orange-500 shadow-lg'
-                          : 'border-gray-200 hover:border-orange-400'
+                          ? 'border-[#198AFC] shadow-lg'
+                          : 'border-gray-200 hover:border-[#198AFC]'
                       }`}
                     >
                       <div className="flex items-start justify-between mb-4">
-                        <span className="text-3xl">{problem.icon}</span>
                         <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                           problem.severity === 'high'
-                            ? 'bg-red-100 text-red-600'
-                            : 'bg-yellow-100 text-yellow-600'
+                            ? 'bg-blue-100 text-[#198AFC]'
+                            : 'bg-blue-50 text-[#198AFC]'
                         }`}>
                           {problem.severity === 'high' ? '높음' : '보통'}
                         </span>
@@ -173,7 +160,7 @@ function Insight() {
 
                       <div className="pt-4 border-t border-gray-100">
                         <div className="text-xs text-gray-500">영향받는 사용자</div>
-                        <div className="text-2xl font-bold text-orange-600">{problem.affectedUsers}</div>
+                        <div className="text-2xl font-bold text-[#198AFC]">{problem.affectedUsers}</div>
                       </div>
                     </button>
                   ))}
@@ -188,19 +175,12 @@ function Insight() {
                         <>
                           {/* AI 추천 해결방안 */}
                           <div className="mb-8">
-                            <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
-                              <span>💡</span>
+                            <h4 className="text-xl font-bold mb-4">
                               AI 추천 해결방안
                             </h4>
 
                             <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
                               <div className="flex items-start gap-4 mb-6">
-                                <div className="flex-shrink-0">
-                                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-3xl">
-                                    {problem.solution.icon}
-                                  </div>
-                                </div>
-
                                 <div className="flex-1">
                                   <div className="flex items-center gap-2 mb-2">
                                     <h5 className="text-2xl font-bold text-gray-800">{problem.solution.title}</h5>
@@ -228,7 +208,7 @@ function Insight() {
                                           (problem.solution.effort === 'low' && i <= 1) ||
                                           (problem.solution.effort === 'medium' && i <= 2) ||
                                           (problem.solution.effort === 'high' && i <= 3)
-                                            ? 'bg-purple-500'
+                                            ? 'bg-[#198AFC]'
                                             : 'bg-gray-200'
                                         }`}
                                       />
@@ -242,32 +222,19 @@ function Insight() {
                                 </div>
                               </div>
 
-                              <div className="flex flex-wrap gap-2 mb-6">
+                              <div className="flex flex-wrap gap-2">
                                 {problem.solution.tags.map((tag, i) => (
-                                  <span key={i} className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
+                                  <span key={i} className="px-4 py-2 bg-blue-100 text-[#198AFC] rounded-full text-sm font-medium">
                                     {tag}
                                   </span>
                                 ))}
-                              </div>
-
-                              {/* 프로덕트 아이디어 스케치 */}
-                              <div>
-                                <h6 className="text-sm font-bold text-gray-700 mb-3">프로덕트 아이디어 스케치</h6>
-                                <div className="rounded-xl overflow-hidden border border-gray-200">
-                                  <img
-                                    src={problem.solution.sketchImage}
-                                    alt={`${problem.solution.title} sketch`}
-                                    className="w-full h-auto"
-                                  />
-                                </div>
                               </div>
                             </div>
                           </div>
 
                           {/* 근거 피드백 목록 */}
                           <div>
-                            <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
-                              <span>📝</span>
+                            <h4 className="text-xl font-bold mb-4">
                               근거 피드백
                             </h4>
 
@@ -276,7 +243,7 @@ function Insight() {
                                 problem.relatedFeedbacks.map((fb) => (
                                   <div key={fb.id} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
                                     <div className="flex items-center justify-between mb-3">
-                                      <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs font-semibold">
+                                      <span className="px-3 py-1 bg-blue-100 text-[#198AFC] rounded-full text-xs font-semibold">
                                         {fb.category}
                                       </span>
                                       <span className="text-xs text-gray-400">
