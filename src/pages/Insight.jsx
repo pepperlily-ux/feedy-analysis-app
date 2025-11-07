@@ -185,41 +185,8 @@ function Insight() {
                       const problem = insights.problems.find(p => p.id === selectedProblem)
                       return (
                         <>
-                          {/* 근거 피드백 목록 */}
-                          <div className="mb-8">
-                            <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
-                              <span>📝</span>
-                              근거 피드백
-                            </h4>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                              {problem.relatedFeedbacks && problem.relatedFeedbacks.length > 0 ? (
-                                problem.relatedFeedbacks.map((fb) => (
-                                  <div key={fb.id} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-                                    <div className="flex items-center justify-between mb-3">
-                                      <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs font-semibold">
-                                        {fb.category}
-                                      </span>
-                                      <span className="text-xs text-gray-400">
-                                        {new Date(fb.date).toLocaleDateString('ko-KR')}
-                                      </span>
-                                    </div>
-
-                                    <p className="text-gray-700 text-sm">
-                                      {fb.content}
-                                    </p>
-                                  </div>
-                                ))
-                              ) : (
-                                <div className="col-span-full text-center py-8 text-gray-400">
-                                  관련 피드백이 없습니다.
-                                </div>
-                              )}
-                            </div>
-                          </div>
-
                           {/* AI 추천 해결방안 */}
-                          <div>
+                          <div className="mb-8">
                             <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
                               <span>💡</span>
                               AI 추천 해결방안
@@ -293,6 +260,39 @@ function Insight() {
                                   />
                                 </div>
                               </div>
+                            </div>
+                          </div>
+
+                          {/* 근거 피드백 목록 */}
+                          <div>
+                            <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
+                              <span>📝</span>
+                              근거 피드백
+                            </h4>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              {problem.relatedFeedbacks && problem.relatedFeedbacks.length > 0 ? (
+                                problem.relatedFeedbacks.map((fb) => (
+                                  <div key={fb.id} className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
+                                    <div className="flex items-center justify-between mb-3">
+                                      <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs font-semibold">
+                                        {fb.category}
+                                      </span>
+                                      <span className="text-xs text-gray-400">
+                                        {new Date(fb.date).toLocaleDateString('ko-KR')}
+                                      </span>
+                                    </div>
+
+                                    <p className="text-gray-700 text-sm">
+                                      {fb.content}
+                                    </p>
+                                  </div>
+                                ))
+                              ) : (
+                                <div className="col-span-full text-center py-8 text-gray-400">
+                                  관련 피드백이 없습니다.
+                                </div>
+                              )}
                             </div>
                           </div>
                         </>

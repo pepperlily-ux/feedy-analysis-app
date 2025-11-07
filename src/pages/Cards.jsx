@@ -49,56 +49,56 @@ function Cards() {
         category: '학생',
         content: '실습 중 막힐 때 질문하기 어려워요',
         date: new Date().toISOString(),
-        autoTags: ['질문', '소통', '실습']
+        autoTags: ['질문']
       },
       {
         id: 2,
         category: '학생',
         content: '진도가 너무 빨라서 따라가기 힘들어요',
         date: new Date().toISOString(),
-        autoTags: ['진도', '학습속도', '난이도']
+        autoTags: ['진도']
       },
       {
         id: 3,
         category: '강사',
         content: '학생들의 이해도를 실시간으로 파악하기 어렵습니다',
         date: new Date().toISOString(),
-        autoTags: ['이해도', '피드백', '모니터링']
+        autoTags: ['이해도']
       },
       {
         id: 4,
         category: '학생',
         content: '실습 자료를 찾기가 너무 어려워요',
         date: new Date().toISOString(),
-        autoTags: ['자료', '접근성', '검색']
+        autoTags: ['자료']
       },
       {
         id: 5,
         category: '기업',
         content: '수강생들의 실력 편차가 너무 큽니다',
         date: new Date().toISOString(),
-        autoTags: ['수준차이', '맞춤학습', '그룹화']
+        autoTags: ['수준차이']
       },
       {
         id: 6,
         category: '강사',
         content: '같은 질문이 반복되어 시간이 많이 소요됩니다',
         date: new Date().toISOString(),
-        autoTags: ['질문', 'FAQ', '효율성']
+        autoTags: ['FAQ']
       },
       {
         id: 7,
         category: '학생',
         content: '혼자 복습할 때 막히는 부분이 많아요',
         date: new Date().toISOString(),
-        autoTags: ['복습', '자습', '학습지원']
+        autoTags: ['복습']
       },
       {
         id: 8,
         category: '임직원',
         content: '학습 진행 상황을 체계적으로 관리하기 어렵습니다',
         date: new Date().toISOString(),
-        autoTags: ['진도관리', '대시보드', '분석']
+        autoTags: ['진도관리']
       }
     ]
   }
@@ -130,8 +130,8 @@ function Cards() {
       }
     })
 
-    // 중복 제거 및 최대 3개로 제한
-    return [...new Set(tags)].slice(0, 3)
+    // 중복 제거 및 1개만 반환
+    return [...new Set(tags)].slice(0, 1)
   }
 
   const categories = ['강사', '학생', '기업', '임직원']
