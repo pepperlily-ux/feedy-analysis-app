@@ -69,14 +69,14 @@ function Home() {
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
               placeholder="서비스에 대한 의견을 자유롭게 남겨주세요."
-              className="w-full h-[366px] p-3 mb-[10.58px] bg-[#F5F7F8] border border-[#E5E7EB] rounded-[2.64px] text-sm text-[#60758A] resize-none focus:outline-none focus:ring-1 focus:ring-[#198AFC] focus:border-[#198AFC]"
+              className="w-full h-[409px] p-3 mb-[10.58px] bg-[#F5F7F8] border border-[#E5E7EB] rounded-[2.64px] text-sm text-[#60758A] resize-none focus:outline-none focus:ring-1 focus:ring-[#198AFC] focus:border-[#198AFC]"
               style={{ fontSize: '14px', lineHeight: '16px' }}
             />
 
             {/* 제출 버튼 */}
             <button
               onClick={handleSubmit}
-              className="w-full bg-[#198AFC] text-white h-[37.03px] rounded-[2.64px] font-bold text-sm hover:bg-blue-600 transition"
+              className="w-full bg-[#198AFC] text-white h-[54px] rounded-[2.64px] font-bold text-sm hover:bg-blue-600 transition"
               style={{ fontSize: '14px', lineHeight: '16px' }}
             >
               제출하기

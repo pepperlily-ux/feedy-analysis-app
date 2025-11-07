@@ -4,7 +4,8 @@ function Cards() {
   const [cards, setCards] = useState([])
   const [activeFilters, setActiveFilters] = useState({
     category: [],
-    autoTag: []
+    autoTag: [],
+    practiceType: []
   })
   const [dateRange, setDateRange] = useState({
     start: '',
@@ -43,62 +44,72 @@ function Cards() {
 
   // 더미 카드 데이터
   const getDummyCards = () => {
+    const practiceTypes = ['제품팀 정기 실습', '지피터스 18기 스터디 실습', 'SKT B2B 실습']
+
     return [
       {
         id: 1,
         category: '학생',
         content: '실습 중 막힐 때 질문하기 어려워요',
         date: new Date().toISOString(),
-        autoTags: ['질문']
+        autoTags: ['질문'],
+        practiceType: practiceTypes[0]
       },
       {
         id: 2,
         category: '학생',
         content: '진도가 너무 빨라서 따라가기 힘들어요',
         date: new Date().toISOString(),
-        autoTags: ['진도']
+        autoTags: ['진도'],
+        practiceType: practiceTypes[1]
       },
       {
         id: 3,
         category: '강사',
         content: '학생들의 이해도를 실시간으로 파악하기 어렵습니다',
         date: new Date().toISOString(),
-        autoTags: ['이해도']
+        autoTags: ['이해도'],
+        practiceType: practiceTypes[2]
       },
       {
         id: 4,
         category: '학생',
         content: '실습 자료를 찾기가 너무 어려워요',
         date: new Date().toISOString(),
-        autoTags: ['자료']
+        autoTags: ['자료'],
+        practiceType: practiceTypes[0]
       },
       {
         id: 5,
         category: '기업',
         content: '수강생들의 실력 편차가 너무 큽니다',
         date: new Date().toISOString(),
-        autoTags: ['수준차이']
+        autoTags: ['수준차이'],
+        practiceType: practiceTypes[1]
       },
       {
         id: 6,
         category: '강사',
         content: '같은 질문이 반복되어 시간이 많이 소요됩니다',
         date: new Date().toISOString(),
-        autoTags: ['FAQ']
+        autoTags: ['FAQ'],
+        practiceType: practiceTypes[2]
       },
       {
         id: 7,
         category: '학생',
         content: '혼자 복습할 때 막히는 부분이 많아요',
         date: new Date().toISOString(),
-        autoTags: ['복습']
+        autoTags: ['복습'],
+        practiceType: practiceTypes[0]
       },
       {
         id: 8,
         category: '임직원',
         content: '학습 진행 상황을 체계적으로 관리하기 어렵습니다',
         date: new Date().toISOString(),
-        autoTags: ['진도관리']
+        autoTags: ['진도관리'],
+        practiceType: practiceTypes[1]
       }
     ]
   }
@@ -135,6 +146,7 @@ function Cards() {
   }
 
   const categories = ['강사', '학생', '기업', '임직원']
+  const practiceTypes = ['제품팀 정기 실습', '지피터스 18기 스터디 실습', 'SKT B2B 실습']
 
   // 모든 카드에서 자동태그 추출
   const allAutoTags = [...new Set(cards.flatMap(card => card.autoTags))]
@@ -160,6 +172,11 @@ function Cards() {
     if (activeFilters.autoTag.length > 0) {
       const hasMatchingTag = card.autoTags.some(tag => activeFilters.autoTag.includes(tag))
       if (!hasMatchingTag) return false
+    }
+
+    // 실습 종류 필터
+    if (activeFilters.practiceType.length > 0 && !activeFilters.practiceType.includes(card.practiceType)) {
+      return false
     }
 
     // 날짜 필터링
@@ -191,6 +208,25 @@ function Cards() {
                   }`}
                 >
                   {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mb-8">
+            <h3 className="font-bold mb-3">실습 종류</h3>
+            <div className="flex flex-wrap gap-2">
+              {practiceTypes.map(type => (
+                <button
+                  key={type}
+                  onClick={() => toggleFilter('practiceType', type)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition ${
+                    activeFilters.practiceType.includes(type)
+                      ? 'bg-green-600 text-white'
+                      : 'bg-green-100 text-green-600 hover:bg-green-200'
+                  }`}
+                >
+                  {type}
                 </button>
               ))}
             </div>
@@ -257,12 +293,13 @@ function Cards() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCards.map(card => (
               <div key={card.id} className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                {/* 구분과 실습 종류를 한 줄에 */}
                 <div className="flex items-center gap-2 mb-3">
                   <span className="px-3 py-1 bg-purple-100 text-purple-600 rounded-full text-xs font-semibold">
                     {card.category}
                   </span>
-                  <span className="text-xs text-gray-400">
-                    {new Date(card.date).toLocaleDateString('ko-KR')}
+                  <span className="px-2 py-1 bg-green-50 text-green-600 rounded text-xs">
+                    {card.practiceType}
                   </span>
                 </div>
 
@@ -271,12 +308,17 @@ function Cards() {
                 </p>
 
                 {/* 자동 태그 */}
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-gray-100">
+                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-gray-100 mb-3">
                   {card.autoTags.map((tag, index) => (
                     <span key={index} className="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs">
                       #{tag}
                     </span>
                   ))}
+                </div>
+
+                {/* 날짜를 아래에 */}
+                <div className="text-xs text-gray-400">
+                  {new Date(card.date).toLocaleDateString('ko-KR')}
                 </div>
               </div>
             ))}

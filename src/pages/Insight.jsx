@@ -1,44 +1,53 @@
 import { useState, useEffect } from 'react'
 
 function Insight() {
-  const [feedbacks, setFeedbacks] = useState([])
-  const [stats, setStats] = useState({
-    total: 0,
-    byCategory: {}
-  })
   const [insights, setInsights] = useState(null)
   const [selectedProblem, setSelectedProblem] = useState(null)
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('feedbacks') || '[]')
-    setFeedbacks(stored)
-
-    // 통계 계산
-    const categoryCount = {}
-    stored.forEach(fb => {
-      categoryCount[fb.category] = (categoryCount[fb.category] || 0) + 1
-    })
-
-    setStats({
-      total: stored.length,
-      byCategory: categoryCount
-    })
-
-    // AI 인사이트 목업 생성
-    if (stored.length > 0) {
-      generateMockInsights(stored, categoryCount)
-      setSelectedProblem(1) // 첫 번째 문제를 기본 선택
-    }
+    // 항상 목업 인사이트 표시 (localStorage와 무관)
+    generateMockInsights()
+    setSelectedProblem(1) // 첫 번째 문제를 기본 선택
   }, [])
 
-  const generateMockInsights = (feedbacks, categoryCount) => {
-    // 가장 많은 피드백을 받은 카테고리 찾기
-    const topCategory = Object.entries(categoryCount).sort((a, b) => b[1] - a[1])[0]
+  const generateMockInsights = () => {
+    // 목업 피드백 데이터
+    const mockFeedbacks = [
+      {
+        id: 1,
+        category: '학생',
+        content: '실습 중 막히는 부분이 있을 때 질문하기가 너무 어려워요. 수업 분위기가 시끄러워서 손 들기도 부담스럽고...',
+        date: new Date().toISOString()
+      },
+      {
+        id: 2,
+        category: '학생',
+        content: '강사님께 질문하려고 해도 다른 학생들이 다 듣고 있어서 부끄러워요. 익명으로 질문할 수 있으면 좋겠어요.',
+        date: new Date().toISOString()
+      },
+      {
+        id: 3,
+        category: '학생',
+        content: '실습 중에 막히면 그냥 넘어가게 되는데, 나중에 다시 물어보기도 어렵고... 실시간으로 질문할 수 있는 방법이 있으면 좋겠어요.',
+        date: new Date().toISOString()
+      },
+      {
+        id: 4,
+        category: '학생',
+        content: '같은 반 친구들 진도가 너무 달라서 수업 따라가기가 힘들어요. 빠른 사람은 기다려야 하고, 느린 사람은 따라가기 어려워요.',
+        date: new Date().toISOString()
+      },
+      {
+        id: 5,
+        category: '학생',
+        content: '실습 자료가 여기저기 흩어져 있어서 찾기 어려워요. 복습할 때 필요한 자료를 못 찾는 경우가 많아요.',
+        date: new Date().toISOString()
+      }
+    ]
 
     const mockInsights = {
       mainIssue: {
         title: '가장 시급한 문제',
-        category: topCategory[0],
         description: `가장 시급한 문제는 실습 중 질문 접근성 부족이며, 실시간 Q&A 플랫폼 개발을 추천합니다.`,
         priority: 'high',
         icon: '🚨'
@@ -51,7 +60,7 @@ function Insight() {
           severity: 'high',
           affectedUsers: '68%',
           icon: '🙋',
-          relatedFeedbacks: feedbacks.slice(0, 3), // 근거가 되는 피드백
+          relatedFeedbacks: mockFeedbacks.slice(0, 3), // 근거가 되는 피드백
           solution: {
             title: '실시간 Q&A 플랫폼',
             description: '실습 중 익명으로 질문을 올리고, 강사나 다른 학생들이 답변할 수 있는 실시간 질문 게시판을 제공합니다.',
@@ -71,7 +80,7 @@ function Insight() {
           severity: 'high',
           affectedUsers: '73%',
           icon: '📊',
-          relatedFeedbacks: feedbacks.slice(0, 2),
+          relatedFeedbacks: mockFeedbacks.slice(3, 5),
           solution: {
             title: '개인별 맞춤 진도 시스템',
             description: '각 학생의 진도를 추적하고, 수준에 맞는 추가 문제나 심화 과제를 자동으로 제공합니다.',
@@ -91,7 +100,7 @@ function Insight() {
           severity: 'medium',
           affectedUsers: '52%',
           icon: '📚',
-          relatedFeedbacks: feedbacks.slice(0, 2),
+          relatedFeedbacks: mockFeedbacks.slice(3, 5),
           solution: {
             title: '통합 실습 자료 허브',
             description: '모든 실습 자료를 한 곳에 모아 검색 가능하게 하고, 수업별/주제별로 정리된 자료 라이브러리를 제공합니다.',
@@ -116,15 +125,7 @@ function Insight() {
     <div className="max-w-7xl mx-auto p-8">
       <h2 className="text-3xl font-bold mb-8 text-gray-800">AI 인사이트</h2>
 
-      {feedbacks.length === 0 ? (
-        <div className="text-center py-20">
-          <div className="text-6xl mb-4">📊</div>
-          <h3 className="text-xl font-semibold text-gray-700 mb-2">아직 피드백이 없습니다</h3>
-          <p className="text-gray-500">홈 페이지에서 피드백을 입력하면 AI가 자동으로 인사이트를 생성합니다!</p>
-        </div>
-      ) : (
-        <>
-          {insights && (
+      {insights && (
             <>
               {/* 메인 이슈 카드 */}
               <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl p-8 mb-12 shadow-lg">
@@ -302,9 +303,8 @@ function Insight() {
                 )}
               </div>
             </>
-          )}
-        </>
-      )}
+          )
+        }
     </div>
   )
 }
