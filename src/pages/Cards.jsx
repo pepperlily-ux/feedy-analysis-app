@@ -12,16 +12,8 @@ function Cards() {
   })
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('feedbacks') || '[]')
-
-    // 피드백이 있으면 더미 카드 생성, 없으면 기본 더미 데이터 사용
-    if (stored.length > 0) {
-      const extractedCards = extractKeyInsights(stored)
-      setCards(extractedCards)
-    } else {
-      // 기본 더미 데이터
-      setCards(getDummyCards())
-    }
+    // 항상 8개 더미 카드 표시
+    setCards(getDummyCards())
   }, [])
 
   // 피드백에서 핵심 문장 추출 및 카드 생성
