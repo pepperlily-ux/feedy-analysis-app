@@ -69,7 +69,7 @@ function Home() {
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
               placeholder="서비스에 대한 의견을 자유롭게 남겨주세요."
-              className="w-full h-[409px] p-3 mb-[10.58px] bg-[#F5F7F8] border border-[#E5E7EB] rounded-[2.64px] text-sm text-[#60758A] resize-none focus:outline-none focus:ring-1 focus:ring-[#198AFC] focus:border-[#198AFC]"
+              className="w-full h-[250px] p-3 mb-[10.58px] bg-[#F5F7F8] border border-[#E5E7EB] rounded-[2.64px] text-sm text-[#60758A] resize-none focus:outline-none focus:ring-1 focus:ring-[#198AFC] focus:border-[#198AFC]"
               style={{ fontSize: '14px', lineHeight: '16px' }}
             />
 
@@ -85,8 +85,8 @@ function Home() {
         </div>
 
         {/* 오른쪽: 카드 그리드 (50%) */}
-        <div className="w-[50%]">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="w-[50%] flex items-start">
+          <div className="grid grid-cols-2 gap-4 w-full">
             {/* 카드 */}
             <div className="aspect-square bg-white rounded-2xl shadow-lg flex items-center justify-center hover:shadow-xl transition cursor-pointer">
               <h3 className="font-bold text-lg text-gray-800">카드</h3>
